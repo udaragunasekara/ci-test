@@ -78,7 +78,7 @@ pipeline {
               sh 'make release'
 
               // promote through all 'Auto' promotion Environments
-              sh 'jx promote -b --all-auto --timeout 1h --version \$(cat ../../VERSION)'
+              sh 'jx promote -b --all-auto --timeout 1m --version \$(cat ../../VERSION)'
             }
           }
         }
@@ -89,8 +89,8 @@ pipeline {
             cleanWs()
         }
         failure {
-            input """Pipeline failed. 
-We will keep the build pod around to help you diagnose any failures. 
+            input """Pipeline failed.
+We will keep the build pod around to help you diagnose any failures.
 
 Select Proceed or Abort to terminate the build pod"""
         }
